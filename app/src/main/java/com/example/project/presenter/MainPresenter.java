@@ -2,7 +2,12 @@ package com.example.project.presenter;
 
 import android.content.Context;
 
+import androidx.lifecycle.Observer;
+
+import com.example.project.model.Film;
 import com.example.project.model.MainModel;
+
+import java.util.ArrayList;
 
 public class MainPresenter {
     Contract contract;
@@ -16,6 +21,12 @@ public class MainPresenter {
 
     public void passDataToSportActivty()
     {
-        contract.loadData(mainModel.loadData(context));
+         mainModel.loadData(context).observeForever(new Observer<ArrayList<Film>>(){
+             @Override
+             public void onChanged(ArrayList<Film> films) {
+                 contract.loadData(films);
+             }
+         });
+
     }
 }

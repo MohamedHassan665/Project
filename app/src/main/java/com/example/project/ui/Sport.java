@@ -83,7 +83,8 @@ public class Sport extends AppCompatActivity implements Contract {
     @Override
     public void loadData(ArrayList<Film> information) {
 
-        array=information;
+        array.addAll(information);
+        adapter.notifyDataSetChanged();
 
     }
 }
